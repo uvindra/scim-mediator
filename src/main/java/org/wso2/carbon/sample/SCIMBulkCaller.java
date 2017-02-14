@@ -177,28 +177,6 @@ public class SCIMBulkCaller extends AbstractMediator {
         return null;
     }
 
-    private SCIMRequest generateBulkRoleOperation() {
-        SCIMRequest scimRequest = new SCIMRequest();
-
-        for (int i = 0; i < 10; ++i) {
-            RoleData roleData = new RoleData();
-            String roleName = getUniqueName();
-            roleData.setDisplayName(roleName);
-            roleData.setExternalId(roleName);
-            roleData.setMethod(Constants.ADD_METHOD);
-            roleData.setBulkId(roleName);
-
-            OperationsData operationsData = new OperationsData();
-            operationsData.setMethod(Constants.ADD_METHOD);
-            operationsData.setPath(Constants.ROLES_PATH);
-            operationsData.setBulkId(roleName);
-            operationsData.setData(roleData);
-
-            scimRequest.addOperations(operationsData);
-        }
-
-        return scimRequest;
-    }
 
     private String getUniqueName() {
         return UUID.randomUUID().toString().substring(15);
